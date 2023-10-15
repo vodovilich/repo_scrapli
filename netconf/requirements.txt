@@ -5,6 +5,7 @@ future==0.18.3
 lxml==4.9.3
 markdown-it-py==3.0.0
 mdurl==0.1.2
+ncclient==0.6.13
 netmiko==4.2.0
 ntc_templates==4.0.0
 paramiko==2.12.0
