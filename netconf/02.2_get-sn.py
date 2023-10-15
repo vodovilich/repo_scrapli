@@ -29,10 +29,25 @@ response = conn.get(
 print(response.result)
 
 """
-YANG MODEL:
+*****OUTPUT:
 
+(env-scrapli) gandalf@debian11:~/Python/scrapli-yang$ python3 02.2_get-sn.py 
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+  <data>
+    <device-hardware-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-device-hardware-oper">
+      <device-hardware>
+        <device-inventory>
+          <hw-type>hw-type-chassis</hw-type>
+          <hw-dev-index>0</hw-dev-index>
+          <serial-number>94N9U8ZRS16</serial-number>
+        </device-inventory>
+      </device-hardware>
+    </device-hardware-data>
+  </data>
+</rpc-reply>
+
+*****YANG MODEL:
 gandalf@debian11:~/yang/vendor/cisco/xe/1693$ pyang -f tree Cisco-IOS-XE-device-hardware-oper.yang
-
 module: Cisco-IOS-XE-device-hardware-oper
   +--ro device-hardware-data
      +--ro device-hardware!
@@ -56,6 +71,4 @@ module: Cisco-IOS-XE-device-hardware-oper
            +--ro software-version?     string
            +--ro rommon-version?       string
            +--ro last-reboot-reason?   string
-gandalf@debian11:~/yang/vendor/cisco/xe/1693$
-
 """
