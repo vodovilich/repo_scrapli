@@ -10,14 +10,10 @@ with open('devs.yml','r') as f:
     dev_list = yaml.safe_load(f)
 
 
-def get_subtree(dev):
 
-    SN_FILTER = """
-    <device-hardware-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-device-hardware-oper">
-        <device-hardware>
-        </device-hardware>
-    </device-hardware-data>
-    """
+def get_xpath(dev):
+
+    XPATH_EXPRESSION = '/device-hardware-data/device-hardware/device-inventory[hw-type="hw-type-chassis"]'
 
     device = {
         'host': dev,
@@ -31,9 +27,9 @@ def get_subtree(dev):
     conn = NetconfDriver(**device, timeout_ops=20, timeout_transport=20, transport='ssh2')
     conn.open()
 
-    response = conn.get(filter_=SN_FILTER, filter_type='subtree')
+    response = conn.get(filter_=XPATH_EXPRESSION, filter_type='xpath')
     print(response.result)
 
 if __name__ == '__main__':
     for target in dev_list:
-        get_subtree(target)
+        get_xpath(target)
